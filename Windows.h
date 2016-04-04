@@ -15,9 +15,7 @@ private:
 
 	cv::Mat frame;
 	trackbarInfo t_info;
-
-	std::string textHelp[5] = { "H - Exibe/Esconde Ajuda", "1 - Calibrar", "2 - Rastrear", "3 - Parar", "Esc - Sair" };
-
+	
 	Capture cap;
 	Inputs *inputs;
 	Output *output;

@@ -1,10 +1,5 @@
 #include "Output.h"
-#include "iostream"
 
-
-//---------------------------------------------------------------------
-//	constructor
-//---------------------------------------------------------------------
 Output::Output()
 {
 	m_rootName = "";
@@ -19,14 +14,9 @@ Output::Output()
 
 	file = NULL;
 
-	//m_numFrames = 0;
-
-	list = lT.newList();
+	list = organizer.newList();
 }
 
-//---------------------------------------------------------------------
-//	destructor
-//---------------------------------------------------------------------
 Output::~Output()
 {
 	if (file)
@@ -56,7 +46,6 @@ void Output::exportToBvh(double frameTime)
 				closeChildJoint();
 			}
 		}
-
 	}
 
 	closeJoint();
@@ -68,9 +57,6 @@ void Output::exportToBvh(double frameTime)
 	closeBVHFile();
 }
 
-//---------------------------------------------------------------------
-//	Create: creates the bvh file
-//---------------------------------------------------------------------
 bool Output::createBVHFile(std::string rootName, bool hasRotChannel, bool hasPosChannel, float* offsetValues)
 {
 	m_rootName = rootName;
@@ -89,9 +75,6 @@ bool Output::createBVHFile(std::string rootName, bool hasRotChannel, bool hasPos
 	return false;
 }
 
-//---------------------------------------------------------------------
-//	Create: creates the bvh file
-//---------------------------------------------------------------------
 bool Output::closeBVHFile()
 {
 	if (file)
@@ -101,9 +84,6 @@ bool Output::closeBVHFile()
 	return true;
 }
 
-//---------------------------------------------------------------------
-//	AddHierarchy: Adds the default hierarchy data into .bvh file
-//---------------------------------------------------------------------
 bool Output::addHierarchy()
 {
 	if (!file)
@@ -118,9 +98,6 @@ bool Output::addHierarchy()
 	return addBody(m_rootName, m_hasRotChannel, m_hasPosChannel, m_offsetValues, root);
 }
 
-//---------------------------------------------------------------------
-//	CloseHierarchy: closes hierarchy
-//---------------------------------------------------------------------
 bool Output::closeHierarchy()
 {
 	if (!file)
@@ -133,9 +110,6 @@ bool Output::closeHierarchy()
 	return true;
 }
 
-//---------------------------------------------------------------------
-//	AddJoint: Adds the joint into the .bvh file
-//---------------------------------------------------------------------
 bool Output::addJoint(std::string jointName, bool hasRotChannel, bool hasPosChannel, float* offsetValues)
 {
 	if (!file)
@@ -148,9 +122,6 @@ bool Output::addJoint(std::string jointName, bool hasRotChannel, bool hasPosChan
 	return addBody(jointName, hasRotChannel, hasPosChannel, offsetValues, joint);
 }
 
-//---------------------------------------------------------------------
-//	CloseJoint: closes the joint
-//---------------------------------------------------------------------
 bool Output::closeJoint()
 {
 	if (!file)
@@ -162,9 +133,6 @@ bool Output::closeJoint()
 	return true;
 }
 
-//---------------------------------------------------------------------
-//	AddJoint: Adds the child joint into the .bvh file
-//---------------------------------------------------------------------
 bool Output::addChildJoint(std::string childName, bool hasRotChannel, bool hasPosChannel, float* offsetValues)
 {
 	if (!file)
@@ -178,9 +146,6 @@ bool Output::addChildJoint(std::string childName, bool hasRotChannel, bool hasPo
 	return addBody(childName, hasRotChannel, hasPosChannel, offsetValues, childJoint);
 }
 
-//----------------------------------------------------------------------
-//	CloseChildJoint: closes the child joint
-//---------------------------------------------------------------------
 bool Output::closeChildJoint()
 {
 	if (!file)
@@ -194,9 +159,6 @@ bool Output::closeChildJoint()
 	return true;
 }
 
-//---------------------------------------------------------------------
-//	AddJointEndSite: Adds the "End Site" of the joint into .bvh file
-//---------------------------------------------------------------------
 void Output::addJointEndSite(float* offsetValues)
 {
 	TAB_SPACE;
@@ -204,9 +166,6 @@ void Output::addJointEndSite(float* offsetValues)
 	addEndSite(offsetValues, joint);
 }
 
-//---------------------------------------------------------------------
-//	AddChildJointEndSite: Adds the "End Site" of the child joint into .bvh file
-//---------------------------------------------------------------------
 void Output::addChildJointEndSite(float* offsetValues)
 {
 	TAB_SPACE;
@@ -215,9 +174,6 @@ void Output::addChildJointEndSite(float* offsetValues)
 	addEndSite(offsetValues, childJoint);
 }
 
-//---------------------------------------------------------------------
-//	AddEndSite: Adds the "End Site" of the joint or child joint
-//---------------------------------------------------------------------
 void Output::addEndSite(float* offsetValues, Hierarchy hierarchy)
 {
 	char floatVal[32] = { 0 };
@@ -288,9 +244,6 @@ void Output::addEndSite(float* offsetValues, Hierarchy hierarchy)
 	NEXT_LINE;
 }
 
-//---------------------------------------------------------------------
-//	AddBody: Adds the body of the Root, Joint and child joint
-//---------------------------------------------------------------------
 bool Output::addBody(std::string name, bool hasRotChannel, bool hasPosChannel, float* offsetValues, Hierarchy hierarchy)
 {
 	char floatVal[32] = { 0 };
@@ -366,17 +319,11 @@ bool Output::addBody(std::string name, bool hasRotChannel, bool hasPosChannel, f
 	return true;
 }
 
-//---------------------------------------------------------------------
-//	Sets the name of the .bvh file
-//---------------------------------------------------------------------
 void Output::setFileName(std::string _fileName)
 {
 	fileName = _fileName + ".bvh";
 }
 
-//---------------------------------------------------------------------
-//	Adds the minimum default motion data into .bvh file
-//---------------------------------------------------------------------
 void Output::addMotionHeader(float frameTime)
 {
 	char frameStr[32] = { 0 };
@@ -403,9 +350,6 @@ void Output::addMotionHeader(float frameTime)
 	NEXT_LINE;
 }
 
-//---------------------------------------------------------------------
-//	Lines
-//---------------------------------------------------------------------
 void Output::addMotionFrameData()
 {
 	Node *node = list->front;
@@ -427,7 +371,7 @@ void Output::addMotion()
 			temp += marker[i].toString();
 	}
 	if (list->front == NULL)
-		lT.insertAtFront(list, temp);
+		organizer.insertAtFront(list, temp);
 	else
-		lT.insertAtRear(list, temp);
+		organizer.insertAtRear(list, temp);
 }

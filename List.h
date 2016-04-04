@@ -1,5 +1,5 @@
-#ifndef _LISTTEMPLATE_H_
-#define _LISTTEMPLATE_H_
+#ifndef _LIST_H_
+#define _LIST_H_
 
 #include <string>
 
@@ -16,24 +16,33 @@ typedef struct {
 	Node *rear;
 } List;
 
-class ListTemplate {
+class ListOrganizer {
 private:
+
 	Node *newNode(std::string n);
+
 	void freeNode(Node *p);
 
 	Node* nextNode(Node *p);
 
 	List *clearList(List *p);
-
 public:
+	
 	List *newList();
+
 	void freeList(List *p);
+	
 	bool emptyList(List *p);
+	
 	List* insertAtFront(List *p, std::string n);
+	
 	List* insertAfter(List *p, Node *w, std::string n);
+	
 	List* insertAtRear(List *p, std::string n);
+	
 	std::string removeFromFront(List *p);
+	
 	Node* findInList(List *p, std::string n);
 };
 
-#endif // _LINES_H_
+#endif //_LIST_H_

@@ -6,10 +6,13 @@
 
 class Clock{
 private:
+
 	clock_t startTime,
 			endTime;
+
 	double total;
 public:
+
 	Clock();
 
 	void startClock();
@@ -23,4 +26,4 @@ public:
 	void clearTime();
 };
 
-#endif
+#endif //_CLOCK_H_

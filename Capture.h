@@ -1,6 +1,3 @@
-/*********************
-******* Capture ******
-*********************/
 #ifndef _CAPTURE_H_
 #define _CAPTURE_H_
 
@@ -10,8 +7,10 @@
 
 class Capture{
 private:
+
 	cv::VideoCapture cap;
 public:
+
 	Capture();
 
 	~Capture();
@@ -19,4 +18,4 @@ public:
 	void updateFrame(cv::Mat *frame);
 };
 
-#endif
+#endif //_CAPTURE_H_

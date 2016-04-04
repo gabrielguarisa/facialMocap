@@ -14,13 +14,17 @@
 
 enum STATUS_SELECTION { NO_SELECTION, SELECTED_UNMARKED };
 enum STATUS_CAPTURE { INIT, CALIBRATION, PRE_TRACK, TRACK, STOP, END };
+enum WARNING { NONE, TND, WTA };
 
 extern Marker marker[MAX_MARKERS];
 extern int currentFrame;
 extern STATUS_SELECTION C_S_SELECTION;
 extern STATUS_CAPTURE C_S_CAPTURE;
+extern WARNING WARNING_TYPE;
 extern bool BLOCK;
 extern bool HELP;
+extern std::string textHelp[5];
+extern std::string textWarning[2];
 
 typedef struct
 {

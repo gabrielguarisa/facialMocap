@@ -4,11 +4,12 @@
 #include <opencv/cv.hpp>
 
 class Marker{
-private:
-	
 public:
+
 	Marker(cv::Rect rect);
+
 	Marker();
+	
 	std::string name(int num);
 
 	std::string toString();
@@ -17,7 +18,8 @@ public:
 			y;
 
 	bool isSelected;
+	
 	cv::Rect rect;
 };
 
-#endif
+#endif //_MARKER_H_

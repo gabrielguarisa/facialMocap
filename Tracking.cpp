@@ -11,7 +11,6 @@ void Tracking::updateFrames(cv::Mat actualFrame, trackbarInfo t_info)
 
 	cvtColor(frame, hsv, cv::COLOR_BGR2HSV);
 	inRange(hsv, cv::Scalar(MIN(t_info.hmin, t_info.hmax), MIN(t_info.smin, t_info.smax), MIN(vmin, vmax)), cv::Scalar(MAX(t_info.hmin, t_info.hmax), MAX(t_info.smin, t_info.smax), MAX(vmin, vmax)), mask);
-	//inRange(hsv, cv::Scalar(0, MIN(t_info.smin, t_info.smax), MIN(t_info.vmin, t_info.vmax)), cv::Scalar(180, MAX(t_info.smin, t_info.smax), MAX(t_info.vmin, t_info.vmax)), mask);
 	hue.create(hsv.size(), hsv.depth());
 	mixChannels(&hsv, 1, &hue, 1, ch, 1);
 

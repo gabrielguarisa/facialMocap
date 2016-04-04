@@ -1,5 +1,8 @@
 #include "Windows.h"
 
+std::string textHelp[5] = { "H - Exibe/Esconde Ajuda", "1 - Calibrar", "2 - Rastrear", "3 - Parar", "Esc - Sair" };
+std::string textWarning[2] = { "Tracking not done!", "Wait and try again!" };
+
 //---------------------------------------------------------------------
 //	function to callback
 //---------------------------------------------------------------------
@@ -89,8 +92,20 @@ void Windows::mainLoop()
 			{
 				cv::Point2d point(0, 50);
 				for (int i = 0; i < 5; i++, point.y+=50)
-					cv::putText(frame, textHelp[i], point, cv::FONT_HERSHEY_PLAIN, 2, cv::Scalar(0, 255, 255, 255));
+					cv::putText(frame, textHelp[i], point, cv::FONT_HERSHEY_PLAIN, 2, cv::Scalar(0, 0, 0, 0));
 			}
+			else if (WARNING_TYPE == TND)
+			{
+				cv::Point2d point(0, 130);
+				cv::putText(frame, textHelp[0], point, cv::FONT_HERSHEY_PLAIN, 2, cv::Scalar(0, 0, 0, 0));
+			}
+			else if (WARNING_TYPE == WTA)
+			{
+				cv::Point2d point(0, 130);
+				cv::putText(frame, textHelp[1], point, cv::FONT_HERSHEY_PLAIN, 2, cv::Scalar(0, 0, 0, 0));
+			}
+
+
 			imshow(windowName_Original, frame);
 		}
 			

@@ -1,10 +1,9 @@
-#ifndef _BVH_H_
-#define _BVH_H_
+#ifndef _OUTPUT_H_
+#define _OUTPUT_H_
 
-//#include <atlstr.h>
 #include <windows.h>
 #include "Global.h"
-#include "ListTemplate.h"
+#include "List.h"
 
 #define NEXT_LINE fwrite("\n", 1, strlen("\n"), file)
 #define TAB_SPACE fwrite("\t", 1, strlen("\t"), file)
@@ -90,8 +89,9 @@ private:
 
 	float* m_offsetValues;
 
-	ListTemplate lT;
+	ListOrganizer organizer;
+
 	List *list;
 };
 
-#endif
+#endif //_OUTPUT_H_

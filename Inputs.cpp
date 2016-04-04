@@ -41,7 +41,7 @@ void Inputs::keyboard()
 	{
 	case '3':
 		if (C_S_CAPTURE != TRACK) 
-			std::cout << "Tracking not done!" << std::endl;
+			WARNING_TYPE = TND;
 		else
 		{
 			C_S_CAPTURE = STOP;
@@ -60,11 +60,14 @@ void Inputs::keyboard()
 	case 'h': case 'H':
 		HELP = !HELP;
 		break;
+	case '#':
+		HELP = !HELP;
+		break;
 	case 27:
 		if (C_S_CAPTURE == TRACK)
-			std::cout << "Tracking not done!" << std::endl;
-		else if(BLOCK)
-			std::cout << "Wait and try again!" << std::endl;
+			WARNING_TYPE = TND;
+		else if (BLOCK)
+			WARNING_TYPE = WTA;
 		else
 			C_S_CAPTURE = END;
 		break;

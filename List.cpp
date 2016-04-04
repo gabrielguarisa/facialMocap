@@ -1,8 +1,6 @@
-#include "ListTemplate.h"
+#include "List.h"
 
-
-
-Node* ListTemplate::newNode(std::string n) {
+Node* ListOrganizer::newNode(std::string n) {
 	Node *q;
 	q = new Node();
 	q->data = n;
@@ -10,14 +8,12 @@ Node* ListTemplate::newNode(std::string n) {
 	return q;
 }
 
-void ListTemplate::freeNode(Node *p) {
+void ListOrganizer::freeNode(Node *p) {
 	delete(p);
 	return;
 }
 
-
-
-List* ListTemplate::newList() {
+List* ListOrganizer::newList() {
 	List *p;
 	p = new List();
 	p->front = NULL;
@@ -25,11 +21,11 @@ List* ListTemplate::newList() {
 	return p;
 }
 
-Node* ListTemplate::nextNode(Node *p) {
+Node* ListOrganizer::nextNode(Node *p) {
 	return p->next;
 }
 
-List* ListTemplate::clearList(List *p) {
+List* ListOrganizer::clearList(List *p) {
 	Node *q, *w;
 	q = p->front;
 	while (q != NULL) {
@@ -42,22 +38,20 @@ List* ListTemplate::clearList(List *p) {
 	return p;
 }
 
-void ListTemplate::freeList(List *p) {
-	// Memória usada por cada nó
+void ListOrganizer::freeList(List *p) {
 	clearList(p);
-	// Memória usada pela estrutura
 	delete(p);
 	return;
 }
 
-bool ListTemplate::emptyList(List *p) {
+bool ListOrganizer::emptyList(List *p) {
 	if (p->front == NULL)
 		return true;
 	else
 		return false;
 }
 
-List* ListTemplate::insertAtFront(List *p, std::string n) {
+List* ListOrganizer::insertAtFront(List *p, std::string n) {
 	Node *q;
 	q = newNode(n);
 	q->next = p->front;
@@ -67,7 +61,7 @@ List* ListTemplate::insertAtFront(List *p, std::string n) {
 	return p;
 }
 
-List* ListTemplate::insertAfter(List *p, Node *w, std::string n) {
+List* ListOrganizer::insertAfter(List *p, Node *w, std::string n) {
 	Node *q;
 	if (w == NULL || p->front == NULL)
 		return insertAtFront(p, n);
@@ -79,13 +73,13 @@ List* ListTemplate::insertAfter(List *p, Node *w, std::string n) {
 	return p;
 }
 
-List* ListTemplate::insertAtRear(List *p, std::string n) {
+List* ListOrganizer::insertAtRear(List *p, std::string n) {
 	Node *q;
 	q = p->rear;
 	return insertAfter(p, q, n);
 }
 
-std::string ListTemplate::removeFromFront(List *p) {
+std::string ListOrganizer::removeFromFront(List *p) {
 	std::string n;
 	Node *q;
 	if (emptyList(p)) {
@@ -100,7 +94,7 @@ std::string ListTemplate::removeFromFront(List *p) {
 	return n;
 }
 
-Node* ListTemplate::findInList(List *p, std::string n) {
+Node* ListOrganizer::findInList(List *p, std::string n) {
 	Node *q;
 	q = p->front;
 	while (q != NULL) {
@@ -108,29 +102,5 @@ Node* ListTemplate::findInList(List *p, std::string n) {
 			break;
 		q = nextNode(q);
 	}
-	// retorna NULL se não for encontrado.
 	return q;
 }
-
-
-	//List *p;
-	//int elem;
-
-
-
-	//p = newList(nome);
-
-	//// Inserindo dados na lista
-	//cin >> elem;
-	//while (elem != 0) {
-	//	// Inserindo no final da lista (fila)
-	//	insertAtRear(p, elem);
-
-	//	/*
-	//	// Inserindo no início da lista (pilha)
-	//	insertAtFront(p, elem);
-	//	*/
-
-	//	cin >> elem;
-	//}
-
