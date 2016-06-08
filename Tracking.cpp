@@ -64,8 +64,8 @@ cv::Mat Tracking::camshift()
 			*/
 			if (i != 0 && (C_S_CAPTURE == TRACK || C_S_CAPTURE == CALIBRATION))
 			{
-				marker[i].x = marker[i].rect.x - marker[0].rect.x
-				marker[i].y = marker[0].rect.y - marker[i].rect.y
+				marker[i].x = marker[i].rect.x - marker[0].rect.x;
+				marker[i].y = marker[0].rect.y - marker[i].rect.y;
 				//PointSub(marker[0].rect, marker[i].rect, marker[i]); //{c.x=a.x-b.x;c.y=a.y-b.y;}
 				//PointSub(marker[i].rect, marker[0].rect, marker[i]);
 				marker[i].x /= PROPORTION;
